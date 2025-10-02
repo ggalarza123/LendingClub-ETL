@@ -1,0 +1,3 @@
+kagglehub
+apache-airflow-providers-amazon
+awscli
