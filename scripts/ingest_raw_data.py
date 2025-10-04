@@ -40,6 +40,26 @@ def upload_to_s3(local_dir, bucket, prefix):
             s3.upload_file(local_path, bucket, s3_key)
     logging.info("All files uploaded successfully.")
 
+def main():
+    os.makedirs(LOCAL_DATA_DIR, exist_ok=TRUE)
+    downloaded_path = download_from_kaggle()
+
+    # Optional: copy downloaded files into /data/raw, serves as backup/ local stored copy
+    for fname in os.listdir(download_path):
+        src = os.path.join(download_path, fname)
+        dest = os.path.join(LOCAL_DATA_DIR, fname)
+        if os.path.isfile(src):
+            os.system(f"cp '{src}' '{dest}'")
+            logging.info(f"Copied {fname} to {LOCAL_DATA_DIR}")
+    
+    # Upload to S3
+    upload_to_s3(LOCAL_DATA_DIR, S3_BUCKET, S3_PREFIX)
+    logging.info("Ingestion job completed succesfully")
+
+if __name__ == "__main__":
+    main()
+
+
 
 
 
