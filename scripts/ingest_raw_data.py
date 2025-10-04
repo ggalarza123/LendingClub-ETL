@@ -31,6 +31,7 @@ def upload_to_s3(local_dir, bucket, prefix):
     """Upload all files in local_dir to s3."""
     s3 = boto3.client("s3")
 
+    # _ ignores
     for root, _, files in os.walk(local_dir):
         for fname in files:
             local_path = os.path.join(root, fname)
