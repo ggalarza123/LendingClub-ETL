@@ -27,6 +27,18 @@ def download_from_kaggle():
     logging.info("Download complete. Local path {path}")
     return path
 
+def upload_to_s3(local_dir, bucket, prefix):
+    """Upload all files in local_dir to s3."""
+    s3 = boto3.client("s3")
+
+    for root, _, files in os.walk(local_dir):
+        for fname in files:
+            local_path = os.path.join(root, fname)
+            s3_key = os.path.join(prefix, fname)
+            logging.info(f"Uploading {local_path} to s3://{bucket}/{s3_key}")
+            s3.upload_file(local_path, bucket, s3_key)
+    logging.info("All files uploaded successfully.")
+
 
 
 
