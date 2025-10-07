@@ -41,12 +41,12 @@ def upload_to_s3(local_dir, bucket, prefix):
     logging.info("All files uploaded successfully.")
 
 def main():
-    os.makedirs(LOCAL_DATA_DIR, exist_ok=TRUE)
+    os.makedirs(LOCAL_DATA_DIR, exist_ok=True)
     downloaded_path = download_from_kaggle()
 
     # Optional: copy downloaded files into /data/raw, serves as backup/ local stored copy
-    for fname in os.listdir(download_path):
-        src = os.path.join(download_path, fname)
+    for fname in os.listdir(downloaded_path):
+        src = os.path.join(downloaded_path, fname)
         dest = os.path.join(LOCAL_DATA_DIR, fname)
         if os.path.isfile(src):
             os.system(f"cp '{src}' '{dest}'")
