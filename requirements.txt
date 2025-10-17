@@ -1,3 +1,7 @@
 kagglehub
 apache-airflow-providers-amazon
 awscli
+pandas
+numpy
+boto3
+pyarrow

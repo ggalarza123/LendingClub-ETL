@@ -9,7 +9,7 @@ import logging
 import os
 
 # CONFIG
-RAW_FILE_S3 = "s3://your-bucket/lendingclub/raw/loan.csv"
+RAW_FILE_S3 = "s3://lendingclub-etl-data-gg/lendingclub/raw/loan.csv"
 CLEAN_FILE_LOCAL = "data/loan_clean.csv"
 CLEAN_S3_PREFIX = "lendingclub/clean/loan_clean.csv"
 
