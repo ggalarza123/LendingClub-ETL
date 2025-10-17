@@ -63,13 +63,19 @@ def main():
 
     # Step 2: Load into Pandas
     logging.info("Loading CSV into DataFrame...")
-    df = pd.read_csv(local_path, low_memory=False)
+    # df = pd.read_csv(local_path, low_memory=False) # Can use for full code later on
+    df = pd.read_csv(local_path, nrows=10000, low_memory=False)
+    logging.info(f"Loaded sample with {len(df)} rows and {len(df.columns)} columns")
 
     # Step 3: Inspect missing / empty
+    logging.info("Checking missing values...")
     check_missing_values(df)
+    logging.info("Done checking missing values...")
 
     # Step 4: Inspect numeric outliers
+    logging.info("Checking columns...")
     numeric_cols = df.select_dtypes(include=np.number).columns.tolist()
+    logging.info("Checking outlier...")
     check_outliers(df, numeric_cols)
 
 
